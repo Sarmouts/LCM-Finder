@@ -6,7 +6,11 @@ double LCM(double a, double b)
 {
 	if (a / b == round(a / b) || b / a == round(b / a))
 	{
-		return fmax(a, b);
+		if (a < 0 || b < 0)
+		{
+			return fmin(a, b);
+		}
+		else return fmax(a, b);
 	}
 	else
 	{
