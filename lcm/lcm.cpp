@@ -6,9 +6,9 @@ double LCM(double a, double b)
 {
 	if (a / b == round(a / b) || b / a == round(b / a))
 	{
-		if (a > 0 && b > 0)
+		if (a < 0 && b < 0)
 		{
-			return fmax(a, b);
+			return fmin(a, b);
 		}
 		else if (a > 0 && b < 0 || a < 0 && b > 0)
 		{
@@ -30,14 +30,25 @@ double LCM(double a, double b)
 		}
 		else
 		{
-			return fmin(a, b);
+			return fmax(a, b);
+		}
+	}
+	else if (a / 2 == round(a / 2) && b / 2 == round(b / 2))
+	{
+		if (a < 0 && b < 0)
+		{
+			return -a * b / 2;
+		}
+		else
+		{
+			return a * b / 2;
 		}
 	}
 	else
 	{
-		if (a < 0 || b < 0)
+		if (a < 0 && b < 0)
 		{
-			return -abs(a) * abs(b);
+			return -a * b;
 		}
 		else
 		{
