@@ -2,66 +2,46 @@
 #include <cmath>
 using namespace std;
 
-double LCM(double a, double b)
+int MKD(int x, int y)
 {
-	if (a / b == round(a / b) || b / a == round(b / a))
+	int MKD = 0;
+	for (int i = 0; i >= 0; i++)
 	{
-		if (a < 0 && b < 0)
+		if (x == 0)
 		{
-			return fmin(a, b);
+			MKD = abs(y);
+			break;
 		}
-		else if (a > 0 && b < 0 || a < 0 && b > 0)
+		else if (y == 0)
 		{
-			if (abs(a) > abs(b))
-			{
-				if (a < 0)
-				{
-					return a;
-				}
-				else return -a;
-			}
-			else {
-				if (b < 0)
-				{
-					return b;
-				}
-				else return -b;
-			}
+			MKD = abs(x);
+			break;
 		}
-		else
+		else if (abs(x) > abs(y))
 		{
-			return fmax(a, b);
+			x %= abs(y);
+		}
+		else if (abs(x) < abs(y))
+		{
+			y %= abs(x);
 		}
 	}
-	else if (a / 2 == round(a / 2) && b / 2 == round(b / 2))
+	return MKD;
+}
+int LCM(int a, int b)
+{
+	if (a < 0 && b < 0)
 	{
-		if (a < 0 && b < 0)
-		{
-			return -a * b / 2;
-		}
-		else
-		{
-			return a * b / 2;
-		}
+		return -a * b / MKD(a, b);
 	}
-	else
-	{
-		if (a < 0 && b < 0)
-		{
-			return -a * b;
-		}
-		else
-		{
-			return a * b;
-		}
-	}
+	else return a * b / MKD(a, b);
 }
 int main()
 {
 	while (true)
 	{
-		double a;
-		double b;
+		int a;
+		int b;
 		cout << "Enter a number: ";
 		cin >> a;
 		cout << "Enter another number: ";
